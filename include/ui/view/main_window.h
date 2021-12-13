@@ -3,6 +3,8 @@
 #include "pch.h"
 #include "app/imgui_window.h"
 
+#include "ui/component/log_window.h"
+
 namespace mixi
 {
 namespace gldemo // OpenGL Demo
@@ -18,6 +20,8 @@ public:
     void render() override;
 
 private:
+
+    LogWindow logWindow_;
 
 };
 

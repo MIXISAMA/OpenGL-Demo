@@ -3,6 +3,7 @@
 #include <atomic>
 #include <ctime>
 #include <cstdint>
+#include <deque>
 #include <exception>
 #include <filesystem>
 #include <fstream>
