@@ -1,20 +1,11 @@
 #include "core/application.h"
 
+#include "core/log.h"
+
 namespace mixi
 {
-namespace app
+namespace core
 {
-
-Application::Glog::Glog(const char* arg, const char* log_dir)
-{
-    FLAGS_log_dir = log_dir;
-    google::InitGoogleLogging(arg);
-}
-
-Application::Glog::~Glog()
-{
-    google::ShutdownGoogleLogging();
-}
 
 Application::Glfw::Glfw()
 {
@@ -75,9 +66,10 @@ void Application::Glfw::postRender() const
 
 void Application::Glfw::ErrorCallback_(int error, const char* description)
 {
-    LOG(ERROR) << "Glfw Error " << error << ": " << description;
+    std::ostringstream oss;
+    oss << "Glfw Error Code " << error << ": " << description;
+    Log::Error(oss.str());
 }
-
 
 Application::Imgui::Imgui(GLFWwindow* glfwWindow)
 {
@@ -147,18 +139,17 @@ void Application::Imgui::postRender() const
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-Application::Application(const char* arg) :
-    glog_(arg, "./log"),
+Application::Application() :
     glfw_(),
     imgui_(glfw_.glfwWindow()),
     mainWindow_(nullptr)
 {
-    LOG(INFO) << "Application Started";
+
 }
 
 Application::~Application()
 {
-    LOG(INFO) << "Application Stopped";
+
 }
 
 void Application::loop(ImguiWindow* mainWindow) const
@@ -178,6 +169,6 @@ bool Application::shouldClose_() const
 }
 
 
-} // namespace app
+} // namespace core
 } // namespace mixi
 

@@ -34,11 +34,27 @@ void LogWindow::render()
 
     while (clipper.Step()) {
         for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++) {
-            ImGui::TextUnformatted(logs_[i].c_str());
+            switch (logs_[i].severity)
+            {
+            case INFO:
+                ImGui::TextColored(ImVec4(0.5f, 0.5f, 0.5f, 1.0f), "[INFO]");
+                break;
+            case WARNING:
+                ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "[WARN]");
+                break;
+            case ERROR:
+                ImGui::TextColored(ImVec4(1.0f, 0.3f, 0.3f, 1.0f), "[ERRO]");
+                break;
+            case FATAL:
+                ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "[FATA]");
+                break;
+            }
+            ImGui::SameLine();
+            ImGui::TextUnformatted(logs_[i].content.c_str());
             if (ImGui::BeginPopupContextItem(std::to_string(i).c_str())) {
                 if (ImGui::Button("Copy")) {
                     ImGui::LogToClipboard();
-                    ImGui::LogText("%s", logs_[i].c_str());
+                    ImGui::LogText("%s", logs_[i].content.c_str());
                     ImGui::LogFinish();
                     ImGui::CloseCurrentPopup();
                 }
@@ -58,9 +74,9 @@ void LogWindow::render()
     ImGui::End();
 }
 
-void LogWindow::push(const std::string& log)
+void LogWindow::push(Severity severity, const std::string& log)
 {
-    logs_.push_back(log);
+    logs_.push_back({severity, log});
     while (logs_.size() > logLinesLimit) {
         logs_.pop_front();
     }

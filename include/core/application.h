@@ -5,7 +5,7 @@
 
 namespace mixi
 {
-namespace app
+namespace core
 {
 
 
@@ -13,23 +13,12 @@ class Application
 {
 public:
 
-    Application(const char* arg);
+    Application();
     ~Application();
 
     void loop(ImguiWindow* mainWindow) const;
 
 private:
-
-    class Glog
-    {
-    public:
-
-        Glog(const char* arg, const char* log_dir);
-        ~Glog();
-
-    };
-
-
     class Glfw
     {
     public:
@@ -67,7 +56,6 @@ private:
 
     };
 
-    Glog glog_;
     Glfw glfw_;
     Imgui imgui_;
 
@@ -77,6 +65,6 @@ private:
 
 };
 
-}
-}
+} // namespace core
+} // namespace mixi
 

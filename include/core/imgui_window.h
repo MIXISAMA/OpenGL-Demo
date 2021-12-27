@@ -2,7 +2,7 @@
 
 namespace mixi
 {
-namespace app
+namespace core
 {
 
 class ImguiWindow
@@ -19,6 +19,6 @@ public:
 
 
 
-} // namespace app
+} // namespace core
 } // namespace mixi
 

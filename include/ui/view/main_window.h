@@ -10,18 +10,18 @@ namespace mixi
 namespace gldemo // OpenGL Demo
 {
 
-class MainWindow : public app::ImguiWindow
+class MainWindow : public core::ImguiWindow
 {
 public:
 
     MainWindow();
-    ~MainWindow() = default;
+    ~MainWindow();
 
     void render() override;
 
 private:
 
-    LogWindow logWindow_;
+    LogWindow::Ptr logWindow_;
 
 };
 
