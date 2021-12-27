@@ -1,4 +1,4 @@
-#include "app/application.h"
+#include "core/application.h"
 
 namespace mixi
 {

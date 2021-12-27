@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pch.h"
-#include "app/imgui_window.h"
+#include "core/imgui_window.h"
 
 #include "ui/component/log_window.h"
 

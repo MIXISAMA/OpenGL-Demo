@@ -1,4 +1,4 @@
-#include "app/application.h"
+#include "core/application.h"
 #include "ui/view/main_window.h"
 
 int main(int argc, const char** argv)
